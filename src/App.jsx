@@ -27,10 +27,18 @@ export default function App() {
     setActivities([newActivity, ...activities]);
   }
 
+  const filteredActivities = activities.filter(
+    (activity) => activity.isGoodWeather === isGoodWeather
+  );
+
   return (
     <>
       <Weather />
-      <List activities={activities} isGoodWeather={isGoodWeather} />
+      <List
+        activities={activities}
+        isGoodWeather={isGoodWeather}
+        filteredActivities={filteredActivities}
+      />
       <Form onAddActivity={handleSubmit} />
     </>
   );
