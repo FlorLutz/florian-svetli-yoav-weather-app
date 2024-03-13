@@ -11,6 +11,9 @@ export default function App() {
     defaultValue: [],
   });
   console.log("activities", activities);
+
+  const isGoodWeather = true; //change with API
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -27,7 +30,7 @@ export default function App() {
   return (
     <>
       <Weather />
-      <List activities={activities} />
+      <List activities={activities} isGoodWeather={isGoodWeather} />
       <Form onAddActivity={handleSubmit} />
     </>
   );

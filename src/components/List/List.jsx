@@ -1,11 +1,10 @@
 import React from "react";
 
-export default function List({ activities }) {
+export default function List({ activities, isGoodWeather }) {
   return (
     <>
       <h2>
-        The weather is awesome! <br />
-        Go outside and:
+        {isGoodWeather ? "The weather is awesome!" : "stay home and do this:"}
       </h2>
       <ul>
         {activities.map((activity) => (
