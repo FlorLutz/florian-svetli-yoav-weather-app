@@ -25,11 +25,17 @@ export default function App() {
     };
     console.log("newActivity", newActivity);
     setActivities([newActivity, ...activities]);
+    event.target.reset();
   }
 
   const filteredActivities = activities.filter(
     (activity) => activity.isGoodWeather === isGoodWeather
   );
+
+  function handleDeleteActivity(id) {
+    console.log(id);
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
 
   return (
     <>
@@ -38,6 +44,7 @@ export default function App() {
         activities={activities}
         isGoodWeather={isGoodWeather}
         filteredActivities={filteredActivities}
+        onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleSubmit} />
     </>
