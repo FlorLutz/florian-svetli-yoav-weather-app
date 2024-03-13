@@ -13,6 +13,13 @@ export default function App() {
   console.log("activities", activities);
 
   const isGoodWeather = true; //change with API
+  async function startFetchingWeather() {
+    const response = await fetch("https://example-apis.vercel.app/api/weather");
+    const data = await response.json();
+    console.log(data);
+  }
+
+  startFetchingWeather();
 
   function handleSubmit(event) {
     event.preventDefault();
