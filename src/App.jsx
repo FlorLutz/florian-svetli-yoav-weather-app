@@ -7,7 +7,7 @@ import Weather from "./components/Weather/Weather.jsx";
 import List from "./components/List/List.jsx";
 
 export default function App() {
-  const [activities, setActivities] = useLocalStorageState("acitivities", {
+  const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
   console.log("activities", activities);
@@ -27,7 +27,7 @@ export default function App() {
   return (
     <>
       <Weather />
-      <List />
+      <List activities={activities} />
       <Form onAddActivity={handleSubmit} />
     </>
   );
