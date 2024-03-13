@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import "./App.css";
@@ -12,14 +12,20 @@ export default function App() {
   });
   console.log("activities", activities);
 
-  const isGoodWeather = true; //change with API
-  async function startFetchingWeather() {
-    const response = await fetch("https://example-apis.vercel.app/api/weather");
-    const data = await response.json();
-    console.log(data);
-  }
+  const [weatherData, setWeatherData] = useState({});
+  useEffect(() => {
+    async function startFetching() {
+      const response = await fetch(
+        "https://example-apis.vercel.app/api/weather"
+      );
+      const data = await response.json();
+      console.log(data);
+      setWeatherData(data);
+    }
+    startFetching();
+  }, []);
 
-  startFetchingWeather();
+  console.log("weatherData", weatherData);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -36,7 +42,7 @@ export default function App() {
   }
 
   const filteredActivities = activities.filter(
-    (activity) => activity.isGoodWeather === isGoodWeather
+    (activity) => activity.isGoodWeather === weatherData.isGoodWeather
   );
 
   function handleDeleteActivity(id) {
@@ -46,10 +52,13 @@ export default function App() {
 
   return (
     <>
-      <Weather />
+      <Weather
+        temperature={weatherData.temperature}
+        condition={weatherData.condition}
+      />
       <List
         activities={activities}
-        isGoodWeather={isGoodWeather}
+        isGoodWeather={weatherData.isGoodWeather}
         filteredActivities={filteredActivities}
         onDeleteActivity={handleDeleteActivity}
       />

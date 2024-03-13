@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Weather() {
-  return <div>the weather is great</div>;
+export default function Weather({ temperature, condition }) {
+  return <p>{`${condition} ${temperature} °C`}</p>;
 }
