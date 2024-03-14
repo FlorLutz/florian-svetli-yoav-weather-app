@@ -19,10 +19,14 @@ export default function App() {
         "https://example-apis.vercel.app/api/weather"
       );
       const data = await response.json();
-      console.log(data);
       setWeatherData(data);
     }
     startFetching();
+
+    let timer = setInterval(startFetching, 5000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   console.log("weatherData", weatherData);
