@@ -21,17 +21,17 @@ export default function App() {
   ]
   const suggestedGoodWeatherActivities = [
     {id: uid(), name: "Go stargazing", isGoodWeather: true},
-    {id: uid(), name: "Do yoga in your closest park", isGoodWeather: true},
-    {id: uid(), name: "Go to the lake and get some tan", isGoodWeather: true},
-    {id: uid(), name: "Time to head for a Biergarten", isGoodWeather: true},
-    {id: uid(), name: "Learn how to rollerskate", isGoodWeather: true}
+    {id: uid(), name: "Eat icecream 🍦", isGoodWeather: true},
+    {id: uid(), name: "Hiking is fun", isGoodWeather: true},
+    {id: uid(), name: "Roof Top Party 🎉", isGoodWeather: true},
+    {id: uid(), name: "Techno Open Air", isGoodWeather: true}
   ]
   const suggestedBadWeatherActivities = [
-    {id: uid(), name: "Go to the gym", isGoodWeather: false},
-    {id: uid(), name: "Listen to <a href='https://open.spotify.com/intl-de/artist/4AZab8zo2nTYd7ORDmQu0V'>The Dead Weather</a>", isGoodWeather: false},
-    {id: uid(), name: "Learn and play a new card game", isGoodWeather: false},
-    {id: uid(), name: "Stare at the wall", isGoodWeather: false},
-    {id: uid(), name: "Paint the first thing you see", isGoodWeather: false},
+    {id: uid(), name: "Cry in your basement", isGoodWeather: false},
+    {id: uid(), name: "Go to the cinema", isGoodWeather: false},
+    {id: uid(), name: "Learn a new programming language", isGoodWeather: false},
+    {id: uid(), name: "Rewatch all seasons of Rick and Morty", isGoodWeather: false},
+    {id: uid(), name: "Clean up the house", isGoodWeather: false},
   ]
 
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -75,8 +75,9 @@ export default function App() {
       console.log("isGoodWeather", weatherData.isGoodWeather, "suggestedGWA", suggestedGWA, "suggestedBWA", suggestedBWA);
       
       if (weatherData.isGoodWeather && (suggestedGWA.length>0)) {
-        setActivities(suggestedGWA[0], ...activities)
+        setActivities([suggestedGWA[0], ...activities])
         suggestedGWA.shift()
+        console.log("suggestedGWA", suggestedGWA);
         setSuggestedGWA(suggestedGWA)
         if (suggestedGWA.length===0){
           setIsSuggestGWALeft(false)
@@ -85,6 +86,7 @@ export default function App() {
       else if (!weatherData.isGoodWeather && (suggestedBWA.length>0)) {
         setActivities([suggestedBWA[0], ...activities])
         suggestedBWA.shift()
+        console.log("suggestedBWA", suggestedBWA);
         setSuggestedBWA(suggestedBWA)
         if (suggestedBWA.length===0){
         setIsSuggestBWALeft(false)
