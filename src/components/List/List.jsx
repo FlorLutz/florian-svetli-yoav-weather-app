@@ -13,8 +13,9 @@ export default function List({
       </h2>
       <ul>
         {filteredActivities.map((activity) => (
-          <li key={activity.id}>
-            {activity.name}
+          <li key={activity.id} >
+          <p dangerouslySetInnerHTML={{__html: activity.name}}/>
+            {/* {activity.name} */}
             <button onClick={() => onDeleteActivity(activity.id)}>x</button>
           </li>
         ))}
