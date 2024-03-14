@@ -40,77 +40,87 @@ export default function App() {
 
   const [suggestedGWA, setSuggestedGWA] = useState(suggestedGoodWeatherActivities);
   const [suggestedBWA, setSuggestedBWA] = useState(suggestedBadWeatherActivities);
-
+  const [isSuggestGWALeft, setIsSuggestGWALeft] = useState(true);
+  const [isSuggestBWALeft, setIsSuggestBWALeft] = useState(true);
+  
   const [weatherData, setWeatherData] = useState({});
+
   useEffect(() => {
     async function startFetching() {
       const response = await fetch(
         "https://example-apis.vercel.app/api/weather"
-      );
-      const data = await response.json();
-      console.log(data);
-      setWeatherData(data);
-    }
-    startFetching();
-  }, []);
-
-  console.log("weatherData", weatherData);
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    const newActivity = {
-      id: uid(),
-      name: data.inputName,
-      isGoodWeather: data.checkbox ? true : false,
-    };
-    console.log("newActivity", newActivity);
-    setActivities([newActivity, ...activities]);
-    event.target.reset();
-  }
-
-  function handleSuggest () {
-    let newActivity;
-    if (weatherData.isGoodWeather && suggestedGWA) {
-      newActivity = suggestedGWA[0]
-      suggestedGWA.shift()
-      setSuggestedGWA(suggestedGWA)
-      console.log("suggestedGWA", suggestedGWA);
-
-    }
-    else if (!weatherData.isGoodWeather && suggestedBWA) {
-      newActivity = suggestedBWA[0]
-      suggestedBWA.shift()
-      setSuggestedBWA(suggestedBWA)
-      console.log("suggestedBWA", suggestedBWA);
+        );
+        const data = await response.json();
+        console.log(data);
+        setWeatherData(data);
+      }
+      startFetching();
+    }, []);
+    
+    function handleSubmit(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const data = Object.fromEntries(formData);
+      const newActivity = {
+        id: uid(),
+        name: data.inputName,
+        isGoodWeather: data.checkbox ? true : false,
+      };
+      console.log("newActivity", newActivity);
+      setActivities([newActivity, ...activities]);
+      event.target.reset();
     }
     
-    newActivity ? setActivities([newActivity, ...activities]) : alert("I just ran out of suggestions for that weather, sorry 🥺");
-  }
+    function handleSuggest () {
+      console.log("isGoodWeather", weatherData.isGoodWeather, "suggestedGWA", suggestedGWA, "suggestedBWA", suggestedBWA);
+      
+      if (weatherData.isGoodWeather && (suggestedGWA.length>0)) {
+        setActivities(suggestedGWA[0], ...activities)
+        suggestedGWA.shift()
+        setSuggestedGWA(suggestedGWA)
+        if (suggestedGWA.length===0){
+          setIsSuggestGWALeft(false)
 
-  const filteredActivities = activities.filter(
-    (activity) => activity.isGoodWeather === weatherData.isGoodWeather
-  );
+      }}
+      else if (!weatherData.isGoodWeather && (suggestedBWA.length>0)) {
+        setActivities([suggestedBWA[0], ...activities])
+        suggestedBWA.shift()
+        setSuggestedBWA(suggestedBWA)
+        if (suggestedBWA.length===0){
+        setIsSuggestBWALeft(false)
+        }
+      }
+    }
+      // else if (weatherData.isGoodWeather && (suggestedGWA.length===0)) {
+      //   setIsSuggestGWALeft(false)
+      // }
+      // else if (!weatherData.isGoodWeather && (suggestedBWA.length===0)) {
+      //   setIsSuggestBWALeft(false)
+      // }
+    
+    
+    function handleDeleteActivity(id) {
+      console.log(id);
+      setActivities(activities.filter((activity) => activity.id !== id));
+    }
 
-  function handleDeleteActivity(id) {
-    console.log(id);
-    setActivities(activities.filter((activity) => activity.id !== id));
-  }
-
-  return (
-    <>
+    const filteredActivities = activities.filter(
+      (activity) => activity.isGoodWeather === weatherData.isGoodWeather
+    );
+    
+    return (
+      <>
       <Weather
         temperature={weatherData.temperature}
         condition={weatherData.condition}
-      />
+        />
       <List
         activities={activities}
         isGoodWeather={weatherData.isGoodWeather}
         filteredActivities={filteredActivities}
         onDeleteActivity={handleDeleteActivity}
       />
-      <Form onAddActivity={handleSubmit} onSuggestActivity={handleSuggest}/>
+      <Form onAddActivity={handleSubmit} onSuggestActivity={handleSuggest} isGoodWeather={weatherData.isGoodWeather} isSuggestedGWALeft={isSuggestGWALeft} isSuggestedBWALeft={isSuggestBWALeft}/>
     </>
   );
 }
