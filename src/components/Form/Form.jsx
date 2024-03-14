@@ -10,10 +10,16 @@ export default function Form({ onAddActivity }) {
         id="inputName"
         className="inputName"
         name="inputName"
+        aria-label="Input field where information about activity could be filled"
       />
       <label htmlFor="checkbox">Good-weather activity:</label>
-      <input type="checkbox" id="checkbox" name="checkbox" />
-      <input value="submit" type="submit" />
+      <input
+        aria-label="Checkbox named good-weather activity"
+        type="checkbox"
+        id="checkbox"
+        name="checkbox"
+      />
+      <input aria-label="Submit button" value="submit" type="submit" />
     </form>
   );
 }
