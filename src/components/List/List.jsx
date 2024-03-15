@@ -1,4 +1,5 @@
 import React from "react";
+import "./List.css";
 
 export default function List({
   activities,
@@ -11,16 +12,13 @@ export default function List({
       <h2>
         {isGoodWeather ? "The weather is awesome!" : "stay home and do this:"}
       </h2>
-      <ul>
+      <ul className="list">
         {filteredActivities.map((activity) => (
-          <li key={activity.id}>
+          <li key={activity.id} className="listedActivity">
             {activity.name}
-            <button
-              aria-label="Close button"
-              onClick={() => onDeleteActivity(activity.id)}
-            >
-              x
-            </button>
+
+            <button aria-label="Close button" onClick={() => onDeleteActivity(activity.id)}>X</button>
+
           </li>
         ))}
       </ul>
