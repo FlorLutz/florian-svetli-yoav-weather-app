@@ -4,6 +4,7 @@ export default function Form({ onAddActivity }) {
   return (
     <form onSubmit={onAddActivity}>
       <h2>Add new Activity:</h2>
+
       <label htmlFor="inputName"></label>
       <div className="formInput">
         <textarea
@@ -20,6 +21,7 @@ export default function Form({ onAddActivity }) {
       </div>
 
       <input value="submit" type="submit" className="submitButton" />
+
     </form>
   );
 }

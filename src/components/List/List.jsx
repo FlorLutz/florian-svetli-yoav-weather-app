@@ -16,7 +16,9 @@ export default function List({
         {filteredActivities.map((activity) => (
           <li key={activity.id} className="listedActivity">
             {activity.name}
-            <button onClick={() => onDeleteActivity(activity.id)}>X</button>
+
+            <button aria-label="Close button" onClick={() => onDeleteActivity(activity.id)}>X</button>
+
           </li>
         ))}
       </ul>
