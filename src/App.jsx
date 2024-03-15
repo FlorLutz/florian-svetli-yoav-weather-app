@@ -73,7 +73,6 @@ export default function App() {
   }
   useEffect(() => {
     startFetching();
-
     let timer = setInterval(startFetching, 5000);
     return () => {
       clearInterval(timer);
