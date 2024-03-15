@@ -1,0 +1,37 @@
+.list {
+  margin: 0;
+  padding: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+  top: 100px;
+  height: 30vh;
+}
+
+.listedActivity {
+  margin: 1rem;
+  padding: 1rem;
+  color: var(--color-CrownYellow);
+  background-color: var(--color-BlueLight);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.listedActivity:hover {
+  background-color: var(--color-BlueLightSolid);
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+}
+
+.list button {
+  background: none;
+  color: var(--color-YassQueen);
+  font-weight: 500;
+  border: none;
+}
+
+.list button:hover {
+  background-color: var(--color-YassQueen);
+  color: var(--color-CrownYellow);
+  transition: all 0.6s ease-in-out;
+}
