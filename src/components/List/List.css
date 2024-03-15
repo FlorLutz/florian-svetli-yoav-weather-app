@@ -1,7 +1,7 @@
 .list {
   margin: 0;
   padding: 1rem;
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
   top: 100px;
   height: 30vh;
@@ -10,6 +10,7 @@
 .listedActivity {
   margin: 1rem;
   padding: 1rem;
+  font-size: 1rem;
   color: var(--color-CrownYellow);
   background-color: var(--color-BlueLight);
   display: flex;

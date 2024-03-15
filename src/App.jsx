@@ -72,8 +72,19 @@ export default function App() {
     setWeatherData(data);
   }
   useEffect(() => {
+
+    async function startFetching() {
+      const response = await fetch(
+        "https://example-apis.vercel.app/api/weather"
+      );
+      const data = await response.json();
+      setWeatherData(data);
+    }
+
     startFetching();
+
     let timer = setInterval(startFetching, 5000);
+
     return () => {
       clearInterval(timer);
     };
@@ -131,13 +142,17 @@ export default function App() {
         filteredActivities={filteredActivities}
         onDeleteActivity={handleDeleteActivity}
       />
-      <Form onAddActivity={handleSubmit} />
-      <Suggestion
-        onSuggestActivity={handleSuggest}
-        isGoodWeather={weatherData.isGoodWeather}
-        isSuggestedGWALeft={isSuggestGWALeft}
-        isSuggestedBWALeft={isSuggestBWALeft}
-      />
+
+      <>
+        <Form onAddActivity={handleSubmit} />
+        <Suggestion
+          onSuggestActivity={handleSuggest}
+          isGoodWeather={weatherData.isGoodWeather}
+          isSuggestedGWALeft={isSuggestGWALeft}
+          isSuggestedBWALeft={isSuggestBWALeft}
+        />
+      </>
+
     </main>
   );
 }
