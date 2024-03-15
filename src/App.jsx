@@ -52,7 +52,7 @@ export default function App() {
   ];
 
   const [activities, setActivities] = useLocalStorageState("activities", {
-    defaultValue: inititialActivities,
+    defaultValue: [...inititialActivities],
   });
 
   const [suggestedGWA, setSuggestedGWA] = useState(
@@ -66,7 +66,13 @@ export default function App() {
 
   const [weatherData, setWeatherData] = useState({});
 
+  async function startFetching() {
+    const response = await fetch("https://example-apis.vercel.app/api/weather");
+    const data = await response.json();
+    setWeatherData(data);
+  }
   useEffect(() => {
+
     async function startFetching() {
       const response = await fetch(
         "https://example-apis.vercel.app/api/weather"
@@ -136,6 +142,7 @@ export default function App() {
         filteredActivities={filteredActivities}
         onDeleteActivity={handleDeleteActivity}
       />
+
       <>
         <Form onAddActivity={handleSubmit} />
         <Suggestion
@@ -145,6 +152,7 @@ export default function App() {
           isSuggestedBWALeft={isSuggestBWALeft}
         />
       </>
+
     </main>
   );
 }
