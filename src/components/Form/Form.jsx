@@ -13,6 +13,9 @@ export default function Form({ onAddActivity }) {
           className="inputName"
           name="inputName"
           placeholder="Enter your new activity here"
+          minLength="3"
+          maxLength="30"
+          required
         />
       </div>
       <div className="formInput">
@@ -21,7 +24,6 @@ export default function Form({ onAddActivity }) {
       </div>
 
       <input value="submit" type="submit" className="submitButton" />
-
     </form>
   );
 }
