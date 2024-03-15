@@ -52,7 +52,7 @@ export default function App() {
   ];
 
   const [activities, setActivities] = useLocalStorageState("activities", {
-    defaultValue: inititialActivities,
+    defaultValue: [...inititialActivities],
   });
 
   const [suggestedGWA, setSuggestedGWA] = useState(
