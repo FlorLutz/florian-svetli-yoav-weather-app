@@ -1,0 +1,40 @@
+form {
+  position: sticky;
+  bottom: 2vh;
+  left: 0;
+  padding-top: 10vh;
+  width: 100%;
+  gap: 0.5rem;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.formInput {
+  margin-left: 6vw;
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.inputName {
+  font-family: "Shantell Sans";
+  width: 92%;
+  border: none;
+}
+
+.submitButton {
+  margin-left: 6vw;
+  font-family: "Shantell Sans";
+  font-weight: 600;
+  background-color: var(--color-BlueLight);
+  color: var(--color-BrutalBlue);
+  border: solid var(--color-BlueLightSolid) 2px;
+  font-size: larger;
+}
+
+.submitButton:hover {
+  background-color: var(--color-BlueLightSolid);
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+}

@@ -52,10 +52,13 @@ export default function App() {
         "https://example-apis.vercel.app/api/weather"
         );
         const data = await response.json();
-        console.log(data);
         setWeatherData(data);
       }
       startFetching();
+    
+    let timer = setInterval(startFetching, 5000);
+    return () => {
+      clearInterval(timer);
     }, []);
     
     function handleSubmit(event) {
@@ -73,21 +76,16 @@ export default function App() {
     }
     
     function handleSuggest () {
-      console.log("isGoodWeather", weatherData.isGoodWeather, "suggestedGWA", suggestedGWA, "suggestedBWA", suggestedBWA);
-      
       if (weatherData.isGoodWeather && (suggestedGWA.length>0)) {
         setActivities([suggestedGWA[0], ...activities])
         suggestedGWA.shift()
-        console.log("suggestedGWA", suggestedGWA);
         setSuggestedGWA(suggestedGWA)
         if (suggestedGWA.length===0){
           setIsSuggestGWALeft(false)
-
       }}
       else if (!weatherData.isGoodWeather && (suggestedBWA.length>0)) {
         setActivities([suggestedBWA[0], ...activities])
         suggestedBWA.shift()
-        console.log("suggestedBWA", suggestedBWA);
         setSuggestedBWA(suggestedBWA)
         if (suggestedBWA.length===0){
         setIsSuggestBWALeft(false)
@@ -96,7 +94,6 @@ export default function App() {
     }
     
     function handleDeleteActivity(id) {
-      console.log(id);
       setActivities(activities.filter((activity) => activity.id !== id));
     }
 
@@ -104,8 +101,8 @@ export default function App() {
       (activity) => activity.isGoodWeather === weatherData.isGoodWeather
     );
     
-    return (
-      <>
+  return (
+    <main className={weatherData.isGoodWeather ? "" : "ifBadWeather"}>
       <Weather
         temperature={weatherData.temperature}
         condition={weatherData.condition}
@@ -118,6 +115,6 @@ export default function App() {
       />
       <Form onAddActivity={handleSubmit} />
       <Suggestion onSuggestActivity={handleSuggest} isGoodWeather={weatherData.isGoodWeather} isSuggestedGWALeft={isSuggestGWALeft} isSuggestedBWALeft={isSuggestBWALeft}/>
-    </>
+    </main>
   );
 }
