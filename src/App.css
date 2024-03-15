@@ -1,0 +1,38 @@
+:root {
+  margin: 0;
+  font-family: "Shantell Sans";
+  font-weight: 300;
+  --color-YassQueen: #ff1d58;
+  --color-SisterSister: #f7599051;
+  --color-SisterSisterSolid: #f75990;
+  --color-CrownYellow: #fff685;
+  --color-BlueLight: #00ddff6e;
+  --color-BlueLightSolid: #00ddff;
+  --color-BrutalBlue: #0049b7;
+  overflow: hidden;
+}
+h2 {
+  margin-left: 6vh;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  padding-top: 5px;
+  padding-bottom: 100px;
+  /* overflow: hidden; */
+  background-image: url("https://i.gifer.com/Lx0q.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ifBadWeather {
+  background-image: url("https://i.gifer.com/Gler.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body {
+  margin: 0;
+}

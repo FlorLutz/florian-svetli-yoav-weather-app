@@ -51,7 +51,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <main className={weatherData.isGoodWeather ? "" : "ifBadWeather"}>
       <Weather
         temperature={weatherData.temperature}
         condition={weatherData.condition}
@@ -63,6 +63,6 @@ export default function App() {
         onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleSubmit} />
-    </>
+    </main>
   );
 }
