@@ -136,13 +136,15 @@ export default function App() {
         filteredActivities={filteredActivities}
         onDeleteActivity={handleDeleteActivity}
       />
-      <Form onAddActivity={handleSubmit} />
-      <Suggestion
-        onSuggestActivity={handleSuggest}
-        isGoodWeather={weatherData.isGoodWeather}
-        isSuggestedGWALeft={isSuggestGWALeft}
-        isSuggestedBWALeft={isSuggestBWALeft}
-      />
+      <>
+        <Form onAddActivity={handleSubmit} />
+        <Suggestion
+          onSuggestActivity={handleSuggest}
+          isGoodWeather={weatherData.isGoodWeather}
+          isSuggestedGWALeft={isSuggestGWALeft}
+          isSuggestedBWALeft={isSuggestBWALeft}
+        />
+      </>
     </main>
   );
 }
