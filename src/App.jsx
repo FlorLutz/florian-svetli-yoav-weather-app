@@ -3,6 +3,7 @@ import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import "./App.css";
 import Form from "./components/Form/Form.jsx";
+import Suggestion from "./components/Suggestion/Suggestion.jsx";
 import Weather from "./components/Weather/Weather.jsx";
 import List from "./components/List/List.jsx";
 
@@ -93,13 +94,6 @@ export default function App() {
         }
       }
     }
-      // else if (weatherData.isGoodWeather && (suggestedGWA.length===0)) {
-      //   setIsSuggestGWALeft(false)
-      // }
-      // else if (!weatherData.isGoodWeather && (suggestedBWA.length===0)) {
-      //   setIsSuggestBWALeft(false)
-      // }
-    
     
     function handleDeleteActivity(id) {
       console.log(id);
@@ -122,7 +116,8 @@ export default function App() {
         filteredActivities={filteredActivities}
         onDeleteActivity={handleDeleteActivity}
       />
-      <Form onAddActivity={handleSubmit} onSuggestActivity={handleSuggest} isGoodWeather={weatherData.isGoodWeather} isSuggestedGWALeft={isSuggestGWALeft} isSuggestedBWALeft={isSuggestBWALeft}/>
+      <Form onAddActivity={handleSubmit} />
+      <Suggestion onSuggestActivity={handleSuggest} isGoodWeather={weatherData.isGoodWeather} isSuggestedGWALeft={isSuggestGWALeft} isSuggestedBWALeft={isSuggestBWALeft}/>
     </>
   );
 }
