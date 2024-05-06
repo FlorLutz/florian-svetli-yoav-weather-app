@@ -1,8 +1,12 @@
-# React + Vite
+# 4th Spiced Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This was the forth project of the spiced full-stack bootcamp. It was a group-project, in which my colleages, Yoav and Svetli, and I created a single page application using Vite and React to view the weather conditions provided by a randomizing API and show activities accordingly.
 
-Currently, two official plugins are available:
+## Key Learnings
+- getting acquainted with fetching data from API
+- render react components conditionally on data provided
+- set and change states with the useState hook
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Additional info
+We decided for a dynamic background using gifs to illustrate the weather conditions.
